@@ -53,7 +53,7 @@ const MealDetail = ({ params: { id } }: Props) => {
   });
   return (
     <Loading isLoading={isLoading || isLoadingRecipeAda} className='h-screen'>
-      <div className='max-w-6xl mx-auto px-4 '>
+      <div className='max-w-6xl mx-auto px-4 overflow-x-hidden'>
         <div className='grid grid-cols-1 md:grid-cols-2 gap-8 py-12'>
           <div className='rounded-lg overflow-hidden'>
             <Image
@@ -97,7 +97,7 @@ const MealDetail = ({ params: { id } }: Props) => {
                     <Tag className='w-5 h-5' />
                     <strong>Tags</strong>
                   </div>
-                  <div className='flex gap-2 '>
+                  <div className='flex flex-wrap gap-1 md:gap-2 '>
                     {meal?.tags.map((r) => (
                       <span key={r}>{r}</span>
                     ))}
@@ -138,12 +138,12 @@ const MealDetail = ({ params: { id } }: Props) => {
                 </>
               )}
             </div>
-            <div className='flex items-center gap-4 mt-4'>
+            <div className='flex items-center gap-4 mt-4 flex-wrap'>
               {!!recipeAda?.totalTime && (
                 <div className='flex items-center gap-1'>
                   <Clock1Icon className='w-5 h-5 text-gray-500' />
                   <span className='text-gray-500'>
-                    {Math.round(recipeAda?.totalTime / 60)} mins
+                    {Math.round(recipeAda?.totalTime)} mins
                   </span>
                 </div>
               )}
@@ -184,19 +184,20 @@ const MealDetail = ({ params: { id } }: Props) => {
         </div>
         <div>
           <h2 className='text-2xl font-bold mb-4'>Ingredients</h2>
-          <div className='grid grid-cols-2 md:grid-cols-3 gap-4'>
+          <div className='grid grid-cols-2 md:grid-cols-3 gap-1 md:gap-4'>
             {meal?.ingredients?.map((ingre) => (
               <div
                 key={ingre.name}
                 className='bg-gray-100 dark:bg-gray-800 p-4 rounded-lg'
               >
-                <div className='flex gap-3'>
+                <div className='flex gap-2 md:gap-3'>
                   <Image
                     src={`https://www.themealdb.com/images/ingredients/${encodeURIComponent(
                       ingre.name
                     )}.png`}
                     width={64}
                     height={64}
+                    className='w-12 sm:w-16'
                     alt={ingre.name}
                   />
                   <div>
@@ -227,7 +228,7 @@ const MealDetail = ({ params: { id } }: Props) => {
 
         <div className='mt-10'>
           <h2 className='text-2xl font-bold mb-4'>Instructions</h2>
-          <div className='flex flex-col gap-6'>
+          <div className='flex flex-col gap-2 sm:gap-6'>
             {meal?.instructions?.map((instruction, idx) => (
               <div key={idx} className='flex flex-grow items-center gap-3'>
                 <Button
@@ -243,9 +244,9 @@ const MealDetail = ({ params: { id } }: Props) => {
         </div>
         <div className='mt-10 '>
           <h2 className='text-2xl font-bold mb-4'>Nutrition / Daily</h2>
-          <div className='grid grid-cols-2 md:grid-cols-3 gap-x-2 gap-y-1'>
+          <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-2 gap-y-1'>
             {recipeAda?.digest?.map((digest: any) => (
-              <Card key={digest.label} className='w-full max-w-sm h-fit'>
+              <Card key={digest.label} className='w-full h-fit'>
                 <CardHeader className='p-4 flex flex-row items-center justify-between'>
                   <CardTitle>{digest.label}</CardTitle>
                   <CompareDigest digest={digest} />

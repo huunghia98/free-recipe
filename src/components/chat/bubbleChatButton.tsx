@@ -48,7 +48,7 @@ const BubbleChatButton = (props: Props) => {
         setOpen={setShowChat}
         className={`${
           showChat ? '' : 'hidden'
-        } z-50 fixed right-0 bottom-0 md:right-[90px] md:bottom-[40px] w-screen h-screen md:w-[600px] md:h-[600px] max-w-screen max-h-screen border shadow-lg`}
+        } z-50 fixed right-0 bottom-0 md:right-[90px] md:bottom-[40px] w-screen h-[calc(100vh-60px)] md:w-[600px] md:h-[600px] max-w-screen max-h-screen border shadow-lg`}
       />
     </div>
   );
