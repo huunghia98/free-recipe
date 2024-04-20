@@ -13,11 +13,11 @@ const BubbleChatButton = (props: Props) => {
   const [neverClick, setNeverClick] = React.useState(true);
   const [showChat, setShowChat] = React.useState(false);
   return (
-    <div>
+    <div className='z-50'>
       <Button
         size='icon'
         variant='ghost'
-        className='fixed rounded-[50%] right-[20px] bottom-[120px] w-[60px] h-[60px]'
+        className='fixed rounded-[50%] right-[30px] bottom-[90px] w-[60px] h-[60px] border'
         onClick={() => {
           setNeverClick(false);
           setShowChat(!showChat);
@@ -31,7 +31,7 @@ const BubbleChatButton = (props: Props) => {
             alt='Chat icon'
             className='rounded-[50%] shadow-lg'
           />
-          <MessageSquareMoreIcon className='absolute -left-2 top-2 w-8 fill-white' />
+          <MessageSquareMoreIcon className='absolute -left-2 top-2 w-8 fill-secondary' />
           {showChat ? (
             <X className={`absolute text-black -top-2 right-0 w-4 `} />
           ) : (
@@ -45,9 +45,10 @@ const BubbleChatButton = (props: Props) => {
       </Button>
       <CardsChat
         open={showChat}
+        setOpen={setShowChat}
         className={`${
           showChat ? '' : 'hidden'
-        } fixed right-[90px] bottom-[40px] w-[600px] h-[600px] border shadow-lg`}
+        } z-50 fixed right-0 bottom-0 md:right-[90px] md:bottom-[40px] w-screen h-screen md:w-[600px] md:h-[600px] max-w-screen max-h-screen border shadow-lg`}
       />
     </div>
   );

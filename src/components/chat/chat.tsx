@@ -17,7 +17,7 @@ import {
 } from '@/components/ui/tooltip';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Eraser } from 'lucide-react';
+import { Circle, Eraser, MessageCircleX } from 'lucide-react';
 import { usePersistedState } from '@/hook/usePersistState';
 import { useMutation } from '@tanstack/react-query';
 import api from '@/lib/api';
@@ -29,9 +29,11 @@ import Loading from '@/components/util/loading';
 export function CardsChat({
   className,
   open,
+  setOpen,
 }: {
   className?: string;
   open: boolean;
+  setOpen: (x: boolean) => void;
 }) {
   const [messages, setMessages] = usePersistedState<any[]>(
     [
@@ -111,8 +113,8 @@ export function CardsChat({
   return (
     <>
       <Card className={className}>
-        <CardHeader className='flex flex-row items-center'>
-          <div className='flex items-center space-x-4'>
+        <CardHeader className='flex flex-row items-center w-full justify-between'>
+          <div className='flex items-center space-x-4 '>
             <Avatar>
               <AvatarImage
                 alt='Image'
@@ -126,24 +128,36 @@ export function CardsChat({
               <p className='text-sm text-muted-foreground'>Cook, cook, cook</p>
             </div>
           </div>
-          <TooltipProvider delayDuration={0}>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  size='icon'
-                  variant='outline'
-                  className='ml-auto rounded-full'
-                  onClick={() => clearContext()}
-                >
-                  <Eraser className='h-4 w-4' />
-                  <span className='sr-only'>Clear Context</span>
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent sideOffset={10}>Clear Context</TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
+          <div className='flex gap-6'>
+            <TooltipProvider delayDuration={0}>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    size='icon'
+                    variant='outline'
+                    className='ml-auto rounded-full'
+                    onClick={() => clearContext()}
+                  >
+                    <Eraser className='h-4 w-4' />
+                    <span className='sr-only'>Clear Context</span>
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent sideOffset={10}>Clear Context</TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+            <Button
+              size='icon'
+              variant='outline'
+              title='Exit'
+              className='ml-auto rounded-full'
+              onClick={() => setOpen(false)}
+            >
+              <MessageCircleX className='h-4 w-4' />
+              <span className='sr-only'>Exit</span>
+            </Button>
+          </div>
         </CardHeader>
-        <CardContent className='overflow-scroll max-h-[450px]'>
+        <CardContent className='overflow-scroll max-h-[calc(100%-150px)] md:max-h-[450px]'>
           <div className='space-y-4'>
             {messages.map((message, index) => (
               <div

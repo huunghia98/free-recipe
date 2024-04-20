@@ -6,8 +6,8 @@ export const getDiscoveryData = async () => {
   const dash = await Promise.all([
     getLatestMeals(),
     getRandomMeals(),
-    getPopularIngredients(),
-    getPopularCategory(),
+    getPopularIngredients(6),
+    getPopularCategory(6),
   ]);
   return {
     latestMeals: dash[0],
@@ -40,12 +40,12 @@ export const getRandomMeals = memoize(async () => {
   return getRandomItems(meals, 8);
 }, 300000);
 
-export const getPopularIngredients = memoize(async () => {
-  return getRandomItems(await cacheIngredients(), 4);
+export const getPopularIngredients = memoize(async (num = 4) => {
+  return getRandomItems(await cacheIngredients(), num);
 }, 300000);
 
-export const getPopularCategory = memoize(async () => {
-  return getRandomItems(await cacheCategory(), 4);
+export const getPopularCategory = memoize(async (num = 4) => {
+  return getRandomItems(await cacheCategory(), num);
 }, 300000);
 
 export const cacheIngredients = memoize(async () => {

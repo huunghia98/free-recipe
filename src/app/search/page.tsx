@@ -128,7 +128,7 @@ const Search = (props: Props) => {
               </div>
             )}
           </h2>
-          <div className='grid grid-cols-4 gap-2'>
+          <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2'>
             {data?.map((meal) => (
               <CardMeal meal={meal} key={meal.id} />
             ))}

@@ -36,7 +36,7 @@ const Discovery = (props: Props) => {
         <SearchInput />
       </div>
       <Loading isLoading={isLoading}>
-        <div className='flex justify-between items-center mb-2'>
+        <div className='flex justify-between items-center mb-2 gap-4 sm:gap-2'>
           <Badge variant='secondary'>🍽 Total Meals: 303</Badge>
           <Badge variant='secondary'>
             🧂 Total Ingredients: {discovery?.ingredients?.length}
@@ -48,7 +48,7 @@ const Discovery = (props: Props) => {
           <h2 className='text-2xl font-semibold mb-6 text-center'>
             Latest Meals
           </h2>
-          <div className='grid grid-cols-4 gap-2'>
+          <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2'>
             {discovery?.latestMeals?.map((meal) => (
               <CardMeal meal={meal} key={meal.id} />
             ))}
@@ -60,8 +60,13 @@ const Discovery = (props: Props) => {
           <h2 className='text-2xl font-semibold mb-6 text-center'>
             Popular Ingredients
           </h2>
-          <div className='grid grid-cols-4 gap-2'>
-            {discovery?.popularIngredients?.map((ig: any) => (
+          <div className='hidden sm:grid sm:grid-cols-4 gap-2'>
+            {discovery?.popularIngredients?.slice(0, 4)?.map((ig: any) => (
+              <CardIngredient key={ig?.idIngredient} {...ig} />
+            ))}
+          </div>
+          <div className='grid grid-cols-3 sm:hidden gap-2'>
+            {discovery?.popularIngredients?.slice(0, 6)?.map((ig: any) => (
               <CardIngredient key={ig?.idIngredient} {...ig} />
             ))}
           </div>
@@ -72,8 +77,13 @@ const Discovery = (props: Props) => {
           <h2 className='text-2xl font-semibold mb-6 text-center'>
             Popular Categories
           </h2>
-          <div className='grid grid-cols-4 gap-2'>
-            {discovery?.popularCategories?.map((ig: any) => (
+          <div className='hidden sm:grid sm:grid-cols-4 gap-2'>
+            {discovery?.popularCategories?.slice(0, 4)?.map((ig: any) => (
+              <CardCategory key={ig?.strCategory} {...ig} />
+            ))}
+          </div>
+          <div className='grid grid-cols-3 sm:hidden gap-2'>
+            {discovery?.popularCategories?.slice(0, 6)?.map((ig: any) => (
               <CardCategory key={ig?.strCategory} {...ig} />
             ))}
           </div>
@@ -83,7 +93,7 @@ const Discovery = (props: Props) => {
           <h2 className='text-2xl font-semibold mb-6 text-center'>
             Random Meals
           </h2>
-          <div className='grid grid-cols-4 gap-2'>
+          <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2'>
             {discovery?.randomMeals?.map((meal) => (
               <CardMeal meal={meal} key={meal.id} />
             ))}

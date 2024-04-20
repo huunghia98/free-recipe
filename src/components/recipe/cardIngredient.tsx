@@ -28,7 +28,7 @@ const CardIngredient = (props: any) => {
         }}
         width='260'
       />
-      <div className='w-full text-center p-3 hover:underline underline-offset-2'>
+      <div className='w-full text-center p-3 hover:underline underline-offset-2 truncate'>
         {props?.strIngredient}
       </div>
     </div>

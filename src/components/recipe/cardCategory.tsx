@@ -1,3 +1,5 @@
+'use client';
+
 import { useRouter } from 'next-nprogress-bar';
 import Image from 'next/image';
 import React from 'react';
@@ -25,7 +27,7 @@ const CardCategory = (props: any) => {
         }}
         width='260'
       />
-      <div className='w-full text-center p-3 hover:underline underline-offset-2'>
+      <div className='w-full text-center p-3 hover:underline underline-offset-2 truncate'>
         {props?.strCategory}
       </div>
     </div>

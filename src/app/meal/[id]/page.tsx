@@ -54,7 +54,7 @@ const MealDetail = ({ params: { id } }: Props) => {
   return (
     <Loading isLoading={isLoading || isLoadingRecipeAda} className='h-screen'>
       <div className='max-w-6xl mx-auto px-4 '>
-        <div className='grid md:grid-cols-2 gap-8 py-12'>
+        <div className='grid grid-cols-1 md:grid-cols-2 gap-8 py-12'>
           <div className='rounded-lg overflow-hidden'>
             <Image
               alt='Recipe Image'
@@ -181,33 +181,31 @@ const MealDetail = ({ params: { id } }: Props) => {
               )}
             </div>
           </div>
-          <div className='col-span-2 space-y-6'>
-            <div>
-              <h2 className='text-2xl font-bold mb-4'>Ingredients</h2>
-              <div className='grid grid-cols-2 md:grid-cols-3 gap-4'>
-                {meal?.ingredients?.map((ingre) => (
-                  <div
-                    key={ingre.name}
-                    className='bg-gray-100 dark:bg-gray-800 p-4 rounded-lg'
-                  >
-                    <div className='flex gap-3'>
-                      <Image
-                        src={`https://www.themealdb.com/images/ingredients/${encodeURIComponent(
-                          ingre.name
-                        )}.png`}
-                        width={64}
-                        height={64}
-                        alt={ingre.name}
-                      />
-                      <div>
-                        <h3 className='text-lg font-bold mb-2'>{ingre.name}</h3>
-                        <p className='text-gray-500'>{ingre.value}</p>
-                      </div>
-                    </div>
+        </div>
+        <div>
+          <h2 className='text-2xl font-bold mb-4'>Ingredients</h2>
+          <div className='grid grid-cols-2 md:grid-cols-3 gap-4'>
+            {meal?.ingredients?.map((ingre) => (
+              <div
+                key={ingre.name}
+                className='bg-gray-100 dark:bg-gray-800 p-4 rounded-lg'
+              >
+                <div className='flex gap-3'>
+                  <Image
+                    src={`https://www.themealdb.com/images/ingredients/${encodeURIComponent(
+                      ingre.name
+                    )}.png`}
+                    width={64}
+                    height={64}
+                    alt={ingre.name}
+                  />
+                  <div>
+                    <h3 className='text-lg font-bold mb-2'>{ingre.name}</h3>
+                    <p className='text-gray-500'>{ingre.value}</p>
                   </div>
-                ))}
+                </div>
               </div>
-            </div>
+            ))}
           </div>
         </div>
         {meal?.youtube && (
